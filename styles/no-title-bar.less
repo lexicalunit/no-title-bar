@@ -1,0 +1,38 @@
+@import "ui-variables";
+
+#atom-no-title-bar() {
+    @title-bar-buttons-width: 80px; // seems to work well for many themes
+
+    .title-bar .title {
+        display: none;
+    }
+
+    .title-bar,
+    .tool-bar,
+    .tool-bar button.tool-bar-btn {
+        border-width: 0;
+    }
+
+    atom-workspace atom-workspace-axis.horizontal {
+        margin-top: -@tab-height;
+        background-color: @tab-bar-background-color;
+    }
+
+    atom-panel-container {
+        &.left {
+            margin-top: @tab-height;
+        }
+
+        &.right {
+            margin-top: @tab-height;
+        }
+    }
+
+    atom-workspace atom-panel-container.left:empty + atom-workspace-axis.vertical .tab-bar {
+        padding-left: @title-bar-buttons-width;
+    }
+}
+
+.platform-darwin {
+    #atom-no-title-bar;
+}
