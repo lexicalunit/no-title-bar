@@ -4,6 +4,11 @@
     @title-bar-buttons-width: 80px; // seems to work well for many themes
 
     :not(.fullscreen).platform-darwin > atom-workspace {
+        -webkit-app-region: drag;
+        .tab-bar, .editor, .tree-view .entry {
+            -webkit-app-region: no-drag;
+        }
+
         .title-bar .title {
             display: none;
         }
