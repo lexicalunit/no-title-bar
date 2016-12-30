@@ -1,6 +1,6 @@
 {
   "name": "no-title-bar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Hides the Atom title bar on systems that support it.",
   "keywords": [
     "title-bar",
