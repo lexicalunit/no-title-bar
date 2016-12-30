@@ -5,7 +5,13 @@
 
     :not(.fullscreen).platform-darwin > atom-workspace {
         -webkit-app-region: drag;
-        .tab-bar, .editor, .tree-view .entry {
+
+        .editor,
+        .tab-bar,
+        .tree-view .entry,
+        .tree-view-resize-handle,
+        atom-pane-resize-handle
+        {
             -webkit-app-region: no-drag;
         }
 
