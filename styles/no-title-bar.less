@@ -22,6 +22,15 @@
         .title-bar .title {
             display: none;
         }
+        
+
+        .tab-bar {
+            &::after {
+                content: '';
+                flex: 1 auto;
+                -webkit-app-region: drag;
+            }
+        }
 
         .title-bar,
         .tool-bar,
