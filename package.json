@@ -1,6 +1,6 @@
 {
   "name": "no-title-bar",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Provides support for a hidden Atom title bar.",
   "keywords": [
     "title-bar",
