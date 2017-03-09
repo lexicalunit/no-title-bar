@@ -1,7 +1,7 @@
 {
   "name": "no-title-bar",
   "version": "0.2.3",
-  "description": "Hides the Atom title bar on systems that support it.",
+  "description": "Provides support for a hidden Atom title bar.",
   "keywords": [
     "title-bar",
     "title bar",
@@ -10,7 +10,7 @@
   "repository": "https://github.com/lexicalunit/no-title-bar",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.11.0 <2.0.0"
+    "atom": ">=1.16.0 <2.0.0"
   },
   "dependencies": {}
 }

@@ -1,29 +1,38 @@
 @import "ui-variables";
 
 #atom-no-title-bar() {
-    @title-bar-buttons-width: 80px; // seems to work well for many themes
+    // This width seems to work well for many themes, but may not be
+    // ideal for all themes. A more universal solution is desired.
+    @title-bar-buttons-width: 80px;
 
-    :not(.fullscreen).platform-darwin > atom-workspace {
-        -webkit-app-region: drag;
-
-        .editor,
-        .settings-view,
-        .tab-bar .tab,
-        .tree-view .entry,
-        .tree-view-resize-handle,
-        atom-pane-resize-handle,
-        atom-pane-resize-handle.horizontal:before,
-        atom-pane-resize-handle.vertical:before,
-        linter-message .linter-message-item,
-        linter-message .linter-message-link
-        {
-            -webkit-app-region: no-drag;
+    // Don't hide title bar when Atom's hidden title bar mode is enabled.
+    :not(.fullscreen):not(.hidden-title-bar).platform-darwin > atom-workspace {
+        atom-workspace-axis.horizontal {
+            margin-top: -@tab-height;
         }
 
         .title-bar .title {
             display: none;
         }
+    }
 
+    // Ensure horizontal padding for the MacOS window buttons. Note that these
+    // buttons are gone when using the hidden title bar mode.
+    :not(.fullscreen):not(.hidden-title-bar).platform-darwin
+        atom-panel-container.left:empty + atom-workspace-axis.vertical
+                                          .pane:nth-child(1)
+                                          .tab-bar
+    {
+        padding-left: @title-bar-buttons-width;
+    }
+
+    // Some themes have a full-width tab-bar, for example Native UI. In these
+    // themes, there is no empty space after the last tab in the tab bar for
+    // empty drag space to exist. A :not() selector here ensures that these
+    // themes are not negatively affected. It would be best to solve this
+    // without having to enumerate each affected theme, but at the time of this
+    // writing there is no good solution that I have found.
+    :not(.fullscreen):not(.theme-native-ui).platform-darwin > atom-workspace {
         .tab-bar {
             &::after {
                 content: '';
@@ -31,18 +40,11 @@
                 -webkit-app-region: drag;
             }
         }
+    }
 
-        .title-bar,
-        .tool-bar,
-        .tool-bar button.tool-bar-btn {
-            border-width: 0;
-        }
-
-        atom-workspace-axis.horizontal {
-            margin-top: -@tab-height;
-            background-color: @tab-bar-background-color;
-        }
-
+    // Ensure vertical offset for panels such as the tree-view so that they
+    // align properly with the tab-bar element.
+    .platform-darwin > atom-workspace {
         atom-panel-container {
             &.left {
                 margin-top: @tab-height;
@@ -53,8 +55,36 @@
             }
         }
 
-        atom-panel-container.left:empty + atom-workspace-axis.vertical .pane:nth-child(1) .tab-bar {
-            padding-left: @title-bar-buttons-width;
+        // Make that vertical offset blend in with inactive tabs.
+        atom-workspace-axis.horizontal {
+            background-color: @tab-bar-background-color;
+        }
+    }
+
+    :not(.fullscreen).platform-darwin > atom-workspace {
+        // Enable blanket window drag on every element in Atom.
+        -webkit-app-region: drag;
+
+        // Then specifically disable it where we do NOT want drag.
+        .editor,
+        .settings-view,             // copy/paste in settings pane text
+        .tab-bar .tab,              // reordering of tabs
+        .tree-view .entry,          // reordering of tree-view items
+        .tree-view-resize-handle,
+        atom-pane-resize-handle,
+        atom-pane-resize-handle.horizontal:before,
+        atom-pane-resize-handle.vertical:before,
+        linter-message .linter-message-item,    // copy paste linter text
+        linter-message .linter-message-link     // copy paste linter text
+        {
+            -webkit-app-region: no-drag;
+        }
+
+        // This may be unnecessary...
+        .title-bar,
+        .tool-bar,
+        .tool-bar button.tool-bar-btn {
+            border-width: 0;
         }
     }
 }
