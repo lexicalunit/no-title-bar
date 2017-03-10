@@ -5,16 +5,24 @@
     // ideal for all themes. A more universal solution is desired.
     @title-bar-buttons-width: 80px;
 
-    // Ensure vertical offset so that title bar is hidden and panels such
-    // as the tree-view, for example, are properly adjusted.
+    // Ensure vertical offsets so that title bar is hidden and panels
+    // such as the tree-view, for example, are properly adjusted.
     .ensure-vertical-offsets() {
         atom-workspace-axis.horizontal {
+            // Hide the title bar itself.
             margin-top: -@title-bar-height;
+
+            // Vertical offset space of panels should blend with inactive tabs.
+            background-color: @tab-bar-background-color;
         }
-        atom-panel-container {
-            &.left { margin-top: max(@title-bar-height, @tab-height); }
-            &.right { margin-top: max(@title-bar-height, @tab-height); }
-        }
+
+        // Sadly, using max() here doesn't work if a theme uses something other
+        // than px for it's @tab-height ui-variable. Instead, we set this
+        // programmatically whenever themes are activated.
+        // atom-panel-container when (ispixel(@tab-height)) {
+        //     &.left { margin-top: max(@title-bar-height, @tab-height); }
+        //     &.right { margin-top: max(@title-bar-height, @tab-height); }
+        // }
     }
 
     // Vertical offsets will vary slightly by title bar setting.
@@ -42,13 +50,6 @@
                                           .tab-bar
     {
         padding-left: @title-bar-buttons-width;
-    }
-
-    // Make vertical offset space of tool panels blend in with inactive tabs.
-    .platform-darwin > atom-workspace {
-        atom-workspace-axis.horizontal {
-            background-color: @tab-bar-background-color;
-        }
     }
 
     .platform-darwin:not(.fullscreen) > atom-workspace {
