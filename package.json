@@ -2,7 +2,7 @@
   "name": "no-title-bar",
   "author": "lexicalunit <lexicalunit@lexicalunit.com>",
   "main": "lib/no-title-bar",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Provides support for a hidden Atom title bar.",
   "keywords": [
     "title-bar",
