@@ -1,7 +1,6 @@
 {
   "name": "no-title-bar",
   "author": "lexicalunit <lexicalunit@lexicalunit.com>",
-  "main": "lib/no-title-bar",
   "version": "0.4.1",
   "description": "Provides support for a hidden Atom title bar.",
   "keywords": [
@@ -15,10 +14,5 @@
     "atom": ">=1.16.0 <2.0.0"
   },
   "dependencies": {},
-  "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-config-standard": "^7.0.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.1.1"
-  }
+  "devDependencies": {}
 }

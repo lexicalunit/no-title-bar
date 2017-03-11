@@ -16,13 +16,21 @@
             background-color: @tab-bar-background-color;
         }
 
-        // Sadly, using max() here doesn't work if a theme uses something other
-        // than px for it's @tab-height ui-variable. Instead, we set this
-        // programmatically whenever themes are activated or fullscreen toggled.
-        // atom-panel-container when (ispixel(@tab-height)) {
-        //     &.left { margin-top: max(@title-bar-height, @tab-height); }
-        //     &.right { margin-top: max(@title-bar-height, @tab-height); }
-        // }
+        // The units given to max() must match. I've seen themes use px and rem
+        // before, so those two cases are defined here. If there are other
+        // themes out there that use different units, they must be added.
+        atom-panel-container when (ispixel(@tab-height)) {
+          @panel-margin-top: max(@title-bar-height, @tab-height);
+          &.left { margin-top: @panel-margin-top; }
+          &.right { margin-top: @panel-margin-top; }
+        }
+
+        atom-panel-container when (isunit(@tab-height, rem)) {
+          @tile-bar-height-rem: unit(unit(@title-bar-height) / unit(@font-size), rem);
+          @panel-margin-top: max(@tile-bar-height-rem, @tab-height);
+          &.left { margin-top: @panel-margin-top; }
+          &.right { margin-top:@panel-margin-top; }
+        }
     }
 
     // Vertical offsets will vary slightly by title bar setting.
