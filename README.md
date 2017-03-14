@@ -84,7 +84,7 @@ theme.
 [dl-badge]:         http://img.shields.io/apm/dm/no-title-bar.svg
 [travis-ci-badge]:  https://travis-ci.org/lexicalunit/no-title-bar.svg?branch=master
 [travis-ci]:        https://travis-ci.org/lexicalunit/no-title-bar
-[appveyor]:         https://ci.appveyor.com/project/lexicalunit/appveyor?branch=master
+[appveyor]:         https://ci.appveyor.com/project/lexicalunit/no-title-bar?branch=master
 [appveyor-badge]:   https://ci.appveyor.com/api/projects/status/10nasryx3of9h2lp/branch/master?svg=true
 [circle-ci]:        https://circleci.com/gh/lexicalunit/no-title-bar/tree/master
 [circle-ci-badge]:  https://circleci.com/gh/lexicalunit/no-title-bar/tree/master.svg?style=svg
