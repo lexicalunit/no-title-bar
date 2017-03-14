@@ -66,6 +66,7 @@
 
         // Then specifically disable it where we do NOT want drag.
         .editor,
+        .linter,                    // copy/paste in linter v2 table
         .settings-view,             // copy/paste in settings pane text
         .tab-bar .tab,              // reordering of tabs
         .tree-view .entry,          // reordering of tree-view items
@@ -73,8 +74,8 @@
         atom-pane-resize-handle,
         atom-pane-resize-handle.horizontal:before,
         atom-pane-resize-handle.vertical:before,
-        linter-message .linter-message-item,    // copy paste linter text
-        linter-message .linter-message-link     // copy paste linter text
+        linter-message .linter-message-item,    // copy/paste linter v1
+        linter-message .linter-message-link     // copy/paste linter v1
         {
             -webkit-app-region: no-drag;
         }
