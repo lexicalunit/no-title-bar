@@ -1,8 +1,12 @@
 # No Title Bar
 
 [![apm package][apm-ver-link]][releases]
-[![][dl-badge]][apm-pkg-link]
-[![][mit-badge]][mit]
+[![travis-ci][travis-ci-badge]][travis-ci]
+[![appveyor][appveyor-badge]][appveyor]
+[![circle-ci][circle-ci-badge]][circle-ci]
+[![david][david-badge]][david]
+[![download][dl-badge]][apm-pkg-link]
+[![mit][mit-badge]][mit]
 
 > **NOTE:** Limited to systems that support Custom Title Bar, meaning macOS.
 
@@ -78,6 +82,14 @@ theme.
 [apm-pkg-link]:     https://atom.io/packages/no-title-bar
 [apm-ver-link]:     https://img.shields.io/apm/v/no-title-bar.svg
 [dl-badge]:         http://img.shields.io/apm/dm/no-title-bar.svg
+[travis-ci-badge]:  https://travis-ci.org/lexicalunit/no-title-bar.svg?branch=master
+[travis-ci]:        https://travis-ci.org/lexicalunit/no-title-bar
+[appveyor]:         https://ci.appveyor.com/project/lexicalunit/appveyor?branch=master
+[appveyor-badge]:   https://ci.appveyor.com/api/projects/status/10nasryx3of9h2lp/branch/master?svg=true
+[circle-ci]:        https://circleci.com/gh/lexicalunit/no-title-bar/tree/master
+[circle-ci-badge]:  https://circleci.com/gh/lexicalunit/no-title-bar/tree/master.svg?style=svg
+[david-badge]:      https://david-dm.org/lexicalunit/no-title-bar.svg
+[david]:            https://david-dm.org/lexicalunit/no-title-bar
 [issues]:           https://github.com/lexicalunit/no-title-bar/issues
 [style-tweaks]:     http://flight-manual.atom.io/using-atom/sections/basic-customization/#style-tweaks
 [empty-screenshot]: https://cloud.githubusercontent.com/assets/1903876/21533874/dad294de-cd24-11e6-9fee-6e4809cc86a7.png
