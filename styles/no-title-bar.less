@@ -1,93 +1,94 @@
 @import "ui-variables";
 
 #atom-no-title-bar() {
-    // This width seems to work well for many themes, but may not be
-    // ideal for all themes. A more universal solution is desired.
-    @title-bar-buttons-width: 80px;
+  // This width seems to work well for many themes, but may not be
+  // ideal for all themes. A more universal solution is desired.
+  @title-bar-buttons-width: 80px;
 
-    // Ensure vertical offsets so that title bar is hidden and panels
-    // such as the tree-view, for example, are properly adjusted.
-    .ensure-vertical-offsets() {
-        atom-workspace-axis.horizontal {
-            // Hide the title bar itself.
-            margin-top: -@title-bar-height;
+  // Ensure vertical offsets so that title bar is hidden and panels
+  // such as the tree-view, for example, are properly adjusted.
+  .ensure-vertical-offsets() {
+    atom-workspace-axis.horizontal {
+      // Hide the title bar itself.
+      margin-top: -@title-bar-height;
 
-            // Vertical offset space of panels should blend with inactive tabs.
-            background-color: @tab-bar-background-color;
-        }
-
-        // The units given to max() must match. I've seen themes use px and rem
-        // before, so those two cases are defined here. If there are other
-        // themes out there that use different units, they must be added.
-        atom-panel-container when (ispixel(@tab-height)) {
-          @panel-margin-top: max(@title-bar-height, @tab-height);
-          &.left { margin-top: @panel-margin-top; }
-          &.right { margin-top: @panel-margin-top; }
-        }
-
-        atom-panel-container when (isunit(@tab-height, rem)) {
-          @tile-bar-height-rem: unit(unit(@title-bar-height) / unit(@font-size), rem);
-          @panel-margin-top: max(@tile-bar-height-rem, @tab-height);
-          &.left { margin-top: @panel-margin-top; }
-          &.right { margin-top:@panel-margin-top; }
-        }
+      // Vertical offset space of panels should blend with inactive tabs.
+      background-color: @tab-bar-background-color;
     }
 
-    // Vertical offsets will vary slightly by title bar setting.
-    .no-title-bar:not(.fullscreen).custom-title-bar > atom-workspace {
-        @title-bar-height: 22px;
-        .ensure-vertical-offsets();
-    }
-    .no-title-bar:not(.fullscreen).custom-inset-title-bar > atom-workspace {
-        @title-bar-height: 38px;
-        .ensure-vertical-offsets();
-    }
-
-    // In any case, the title label of the title bar will not be seen.
-    atom-workspace {
-        .title-bar .title {
-            display: none;
-        }
+    // The units given to max() must match. I've seen themes use px and rem
+    // before, so those two cases are defined here. If there are other
+    // themes out there that use different units, they must be added.
+    atom-panel-container when (ispixel(@tab-height)) {
+      @panel-margin-top: max(@title-bar-height, @tab-height);
+      &.left { margin-top: @panel-margin-top; }
+      &.right { margin-top: @panel-margin-top; }
     }
 
-    // Ensure horizontal padding for the macOS window buttons. Note that these
-    // buttons are gone when using the hidden title bar mode.
-    .platform-darwin.no-title-bar:not(.fullscreen):not(.hidden-title-bar)
-        atom-panel-container.left:empty + atom-workspace-axis.vertical
-                                          .pane:nth-child(1)
-                                          .tab-bar
+    atom-panel-container when (isunit(@tab-height, rem)) {
+      @tile-bar-height-rem: unit(unit(@title-bar-height) / unit(@font-size), rem);
+      @panel-margin-top: max(@tile-bar-height-rem, @tab-height);
+      &.left { margin-top: @panel-margin-top; }
+      &.right { margin-top:@panel-margin-top; }
+    }
+  }
+
+  // Vertical offsets will vary slightly by title bar setting.
+  .no-title-bar:not(.fullscreen).custom-title-bar > atom-workspace {
+    @title-bar-height: 22px;
+    .ensure-vertical-offsets();
+  }
+  .no-title-bar:not(.fullscreen).custom-inset-title-bar > atom-workspace {
+    @title-bar-height: 38px;
+    .ensure-vertical-offsets();
+  }
+
+  // In any case, the title label of the title bar will not be seen.
+  atom-workspace {
+    .title-bar .title {
+      display: none;
+    }
+  }
+
+  // Ensure horizontal padding for the macOS window buttons. Note that these
+  // buttons are gone when using the hidden title bar mode.
+  .platform-darwin.no-title-bar:not(.fullscreen):not(.hidden-title-bar)
+    atom-panel-container.left:empty + atom-workspace-axis.vertical
+                      .pane:nth-child(1)
+                      .tab-bar
+  {
+    padding-left: @title-bar-buttons-width;
+  }
+
+  .no-title-bar:not(.fullscreen) > atom-workspace {
+    // Enable blanket window drag on every element in Atom.
+    -webkit-app-region: drag;
+
+    // Then specifically disable it where we do NOT want drag.
+    .atom-dock-resize-handle,
+    .editor,
+    .key-binding-resolver,      // don't interfere with keybinding resolver
+    .linter,                    // copy/paste in linter v2 table
+    .settings-view,             // copy/paste in settings pane text
+    .tab-bar .tab,              // reordering of tabs
+    .tree-view .entry,          // reordering of tree-view items
+    .tree-view-resize-handle,
+    atom-pane-resize-handle,
+    atom-pane-resize-handle.horizontal:before,
+    atom-pane-resize-handle.vertical:before,
+    linter-message .linter-message-item,    // copy/paste linter v1
+    linter-message .linter-message-link     // copy/paste linter v1
     {
-        padding-left: @title-bar-buttons-width;
+      -webkit-app-region: no-drag;
     }
 
-    .no-title-bar:not(.fullscreen) > atom-workspace {
-        // Enable blanket window drag on every element in Atom.
-        -webkit-app-region: drag;
-
-        // Then specifically disable it where we do NOT want drag.
-        .atom-dock-resize-handle,
-        .editor,
-        .linter,                    // copy/paste in linter v2 table
-        .settings-view,             // copy/paste in settings pane text
-        .tab-bar .tab,              // reordering of tabs
-        .tree-view .entry,          // reordering of tree-view items
-        .tree-view-resize-handle,
-        atom-pane-resize-handle,
-        atom-pane-resize-handle.horizontal:before,
-        atom-pane-resize-handle.vertical:before,
-        linter-message .linter-message-item,    // copy/paste linter v1
-        linter-message .linter-message-link     // copy/paste linter v1
-        {
-            -webkit-app-region: no-drag;
-        }
-
-        // This may be unnecessary...
-        .title-bar,
-        .tool-bar,
-        .tool-bar button.tool-bar-btn {
-            border-width: 0;
-        }
+    // This may be unnecessary...
+    .title-bar,
+    .tool-bar,
+    .tool-bar button.tool-bar-btn {
+      border-width: 0;
     }
+  }
 }
 
 #atom-no-title-bar;

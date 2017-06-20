@@ -1,11 +1,11 @@
 module.exports = {
-    "extends": "standard",
-    "installedESLint": true,
-    "plugins": [
-        "standard",
-        "promise"
-    ],
-    "globals": {
-      "atom": true,
-    },
-};
+  'extends': 'standard',
+  'installedESLint': true,
+  'plugins': [
+    'standard',
+    'promise'
+  ],
+  'globals': {
+    'atom': true
+  }
+}

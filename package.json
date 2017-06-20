@@ -12,7 +12,7 @@
   "repository": "https://github.com/lexicalunit/no-title-bar",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.16.0 <2.0.0"
+    "atom": ">=1.19.0 <2.0.0"
   },
   "dependencies": {},
   "devDependencies": {
