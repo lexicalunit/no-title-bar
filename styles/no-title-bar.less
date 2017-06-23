@@ -31,12 +31,24 @@
 
   // Vertical offsets will vary slightly by title bar setting.
   .no-title-bar:not(.fullscreen).custom-title-bar > atom-workspace {
-    @title-bar-height: 22px;
-    .ensure-vertical-offsets();
+    & {
+      @title-bar-height: 22px;
+      .ensure-vertical-offsets();
+    }
+    &.theme-one-light-ui, &.theme-one-dark-ui {
+      @title-bar-height: 23px;
+      .ensure-vertical-offsets();
+    }
   }
   .no-title-bar:not(.fullscreen).custom-inset-title-bar > atom-workspace {
-    @title-bar-height: 38px;
-    .ensure-vertical-offsets();
+    & {
+      @title-bar-height: 38px;
+      .ensure-vertical-offsets();
+    }
+    &.theme-one-light-ui, &.theme-one-dark-ui {
+      @title-bar-height: 39px;
+      .ensure-vertical-offsets();
+    }
   }
 
   // In any case, the title label of the title bar will not be seen.
