@@ -1,10 +1,6 @@
 @import "ui-variables";
 
 #atom-no-title-bar() {
-  // This width seems to work well for many themes, but may not be
-  // ideal for all themes. A more universal solution is desired.
-  @title-bar-buttons-width: 80px;
-
   // Ensure vertical offsets so that title bar is hidden and panels
   // such as the tree-view, for example, are properly adjusted.
   .ensure-vertical-offsets() {
@@ -48,16 +44,6 @@
     .title-bar .title {
       display: none;
     }
-  }
-
-  // Ensure horizontal padding for the macOS window buttons. Note that these
-  // buttons are gone when using the hidden title bar mode.
-  .platform-darwin.no-title-bar:not(.fullscreen):not(.hidden-title-bar)
-    atom-panel-container.left:empty + atom-workspace-axis.vertical
-                      .pane:nth-child(1)
-                      .tab-bar
-  {
-    padding-left: @title-bar-buttons-width;
   }
 
   .no-title-bar:not(.fullscreen) > atom-workspace {
