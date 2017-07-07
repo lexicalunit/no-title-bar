@@ -91,11 +91,15 @@
   // Tweaks specific to Atom One * UI themes.
   .no-title-bar:not(.fullscreen):not(.hidden-title-bar) {
     .theme-one-light-ui, .theme-one-dark-ui {
+      .settings-panel {
+        border-top-width: 0 !important;
+      }
+
       atom-panel-container.left + atom-workspace-axis.vertical {
         .pane:nth-child(1) .tab-bar {
           margin-left: -1px;
 
-          .tab:nth-child(1):not(.active) {
+          .tab:nth-child(1) {
             border-left: 1px solid @tab-bar-border-color;
           }
         }
