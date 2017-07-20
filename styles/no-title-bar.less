@@ -120,6 +120,20 @@
       }
     }
   }
+
+  // Tweaks specific to the unity-ui theme.
+  .no-title-bar:not(.fullscreen):not(.hidden-title-bar) {
+    .theme-unity-ui {
+      // Fixes the background color of the tab-bar padding.
+      atom-panel-container.left + atom-workspace-axis.vertical .pane:nth-child(1) .tab-bar {
+        background-color: #CCCBCC !important;
+        background-image: none !important;
+
+        // Adds the missing left tab border to the first tab.
+        .tab:nth-child(1) { border-left: 1px solid @tab-bar-border-color; }
+      }
+    }
+  }
 }
 
 #atom-no-title-bar;
