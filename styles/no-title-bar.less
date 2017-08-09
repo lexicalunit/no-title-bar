@@ -59,10 +59,17 @@
   }
 
   .no-title-bar:not(.fullscreen) > atom-workspace {
-    // Enable blanket window drag on every element in Atom.
-    -webkit-app-region: drag;
+    // Liberal drag applied iff enableLiberalWindowDragging is on.
+    // -webkit-app-region: drag;
 
-    // Then specifically disable it where we do NOT want drag.
+    // Specifically enable window drag in a few specific areas.
+    .tab-bar,
+    .tree-view
+    {
+      -webkit-app-region: drag;
+    }
+
+    // Specifically disable drag where we never absolutely want it.
     .atom-dock-resize-handle,
     .editor,
     .key-binding-resolver,      // don't interfere with keybinding resolver
@@ -80,7 +87,7 @@
       -webkit-app-region: no-drag;
     }
 
-    // This may be unnecessary...
+    // Ensure title bar is completely gone.
     .title-bar,
     .tool-bar,
     .tool-bar button.tool-bar-btn {
