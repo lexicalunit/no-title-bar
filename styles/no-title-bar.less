@@ -62,10 +62,8 @@
     // Liberal drag applied iff enableLiberalWindowDragging is on.
     // -webkit-app-region: drag;
 
-    // Specifically enable window drag in a few specific areas.
-    .tab-bar,
-    .tree-view
-    {
+    // Specifically enable window drag in empty area of tab bar only.
+    .tab-bar {
       -webkit-app-region: drag;
     }
 
