@@ -5,11 +5,7 @@
   // such as the tree-view, for example, are properly adjusted.
   .ensure-vertical-offsets() {
     atom-workspace-axis.horizontal {
-      // Hide the title bar itself.
-      margin-top: -@title-bar-height;
-
-      // Vertical offset space of panels should blend with inactive tabs.
-      background-color: @tab-bar-background-color;
+      margin-top: -@title-bar-height; // Hide the title bar itself.
     }
 
     // The units given to max() must match. I've seen themes use px and rem
@@ -48,6 +44,16 @@
     &.theme-one-light-ui, &.theme-one-dark-ui {
       @title-bar-height: 39px;
       .ensure-vertical-offsets();
+    }
+  }
+
+  // Vertical offset space of panels should blend with inactive tabs,
+  // except for Native UI when macOS transparency is enabled.
+  :not(.native-ui-macTransparency) {
+    .no-title-bar:not(.fullscreen) > atom-workspace.theme-unity-ui {
+      atom-workspace-axis.horizontal {
+        background-color: @tab-bar-background-color;
+      }
     }
   }
 
@@ -113,6 +119,25 @@
     }
   }
 
+  // Tweaks specific to the native-ui theme.
+  .no-title-bar:not(.fullscreen):not(.hidden-title-bar) {
+    .theme-native-ui {
+      // Fixes the background color of the tab-bar padding.
+      atom-panel-container.left + atom-workspace-axis.vertical .pane:nth-child(1) .tab-bar {
+        background-color: #B3B3B3 !important;
+        background-image: none !important;
+
+        // Adds the missing left tab border to the first tab.
+        .tab:nth-child(1) { border-left: 1px solid @input-border-color; }
+      }
+
+      // Makes atom-dock border line up with border of left most tab.
+      atom-dock.left {
+        margin-right: -1px;
+      }
+    }
+  }
+
   // Tweaks specific to the unity-ui theme.
   .no-title-bar:not(.fullscreen):not(.hidden-title-bar) {
     .theme-unity-ui {
@@ -123,6 +148,11 @@
 
         // Adds the missing left tab border to the first tab.
         .tab:nth-child(1) { border-left: 1px solid @tab-bar-border-color; }
+      }
+
+      // Makes atom-dock border line up with border of left most tab.
+      atom-dock.left {
+        margin-right: -1px;
       }
     }
   }
