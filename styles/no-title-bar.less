@@ -4,10 +4,6 @@
   // Ensure vertical offsets so that title bar is hidden and panels
   // such as the tree-view, for example, are properly adjusted.
   .ensure-vertical-offsets() {
-    atom-workspace-axis.horizontal {
-      margin-top: -@title-bar-height; // Hide the title bar itself.
-    }
-
     // The units given to max() must match. I've seen themes use px and rem
     // before, so those two cases are defined here. If there are other
     // themes out there that use different units, they must be added.
@@ -57,9 +53,9 @@
     }
   }
 
-  // In any case, the title label of the title bar will not be seen.
+  // Hide the title bar!
   atom-workspace {
-    .title-bar .title {
+    .title-bar, .title-bar .title {
       display: none;
     }
   }
