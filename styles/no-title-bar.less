@@ -61,7 +61,7 @@
   }
 
   .no-title-bar:not(.fullscreen) > atom-workspace {
-    // Liberal drag applied iff enableLiberalWindowDragging is on.
+    // Liberal drag is applied when enableLiberalWindowDragging is on.
     // -webkit-app-region: drag;
 
     // Specifically enable window drag in empty area of tab bar only.
@@ -69,7 +69,7 @@
       -webkit-app-region: drag;
     }
 
-    // Specifically disable drag where we never absolutely want it.
+    // Specifically disable drag where we absolutely never want it.
     .atom-dock-resize-handle,
     .editor,
     .key-binding-resolver,      // don't interfere with keybinding resolver
