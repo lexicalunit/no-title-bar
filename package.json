@@ -14,6 +14,29 @@
   "engines": {
     "atom": ">=1.20.0 <2.0.0"
   },
+  "configSchema": {
+    "trafficLightsPadding": {
+      "description": "A padding width, in pixels, to accommodate the window traffic lights.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 80
+    },
+    "automaticTrafficLightsPadding": {
+      "description": "Use the width of your left dock as the width for the traffic lights padding.",
+      "type": "boolean",
+      "default": false
+    },
+    "automaticTrafficLightsPaddingOffset": {
+      "description": "An offset adjustment width, in pixels, when using automatic padding.",
+      "type": "integer",
+      "default": 0
+    },
+    "enableLiberalWindowDragging": {
+      "description": "Liberally allow window dragging from any \"empty\" space.",
+      "type": "boolean",
+      "default": true
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "eslint": "^3.17.1",
