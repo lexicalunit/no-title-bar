@@ -1,6 +1,6 @@
 /** @babel */
 
-let enabledForPlatform = require('../lib/no-title-bar').enabledForPlatform
+const enabledForPlatform = require('../lib/no-title-bar').enabledForPlatform
 
 describe('no-title-bar', () => {
   let [workspaceElement] = []
@@ -24,13 +24,13 @@ describe('no-title-bar', () => {
 
   describe('after activation', () => {
     it('installs theming hook', () => {
-      let classList = atom.document.body.classList
-      let isEnabled = enabledForPlatform(process.platform)
+      const classList = atom.document.body.classList
+      const isEnabled = enabledForPlatform(process.platform)
       expect(classList.contains('no-title-bar')).toBe(isEnabled)
     })
 
     it('hides the title bar', () => {
-      let titleBar = workspaceElement.querySelector('.title-bar')
+      const titleBar = workspaceElement.querySelector('.title-bar')
       if (enabledForPlatform()) {
         expect(titleBar).not.toBe(null)
         expect(window.getComputedStyle(titleBar).marginTop).toBe('0px')
